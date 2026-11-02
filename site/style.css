@@ -1,0 +1,402 @@
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.1);
+  --link: #1c5cab;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --header-from: #014d5d;
+  --header-to: #0d366b;
+  --header-ink: #ffffff;
+  --header-ink-2: #cde2fb;
+  --shadow: 0 6px 20px rgba(11, 11, 11, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --ink: #f0efec;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.1);
+    --link: #86b6ef;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --header-from: #013642;
+    --header-to: #0a2a52;
+    --shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.15em;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  font-weight: 650;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 3.5rem 0 0.75rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.site-header {
+  background: linear-gradient(135deg, var(--header-from), var(--header-to));
+  color: var(--header-ink);
+  padding: 3.5rem 16px 3rem;
+}
+
+.site-header > div,
+.site-footer > div {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+main {
+  max-width: calc(46rem + 32px);
+  margin: 0 auto;
+}
+
+.kicker {
+  margin: 0 0 0.5rem;
+  color: var(--header-ink-2);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.site-header h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+}
+
+.site-header p {
+  margin: 0 0 1rem;
+}
+
+.site-header a {
+  color: var(--header-ink);
+}
+
+.lede {
+  font-size: 1.1rem;
+}
+
+main {
+  padding: 0 16px 4rem;
+}
+
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.chart {
+  margin: 1.75rem -16px;
+  padding: 1.25rem 16px 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+@media (min-width: 52rem) {
+  .chart {
+    margin-left: -3rem;
+    margin-right: -3rem;
+    padding: 1.5rem 1.5rem 1.25rem;
+  }
+}
+
+.chart-sub {
+  margin: 0.25rem 0 0;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-2);
+  font-size: 0.85rem;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.key-line {
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.key-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.key-1 {
+  background: var(--series-1);
+}
+
+.key-2 {
+  background: var(--series-2);
+}
+
+.chart-plot {
+  position: relative;
+  margin-top: 0.75rem;
+}
+
+.chart-svg svg {
+  display: block;
+  overflow: visible;
+  touch-action: pan-y;
+}
+
+.chart-svg svg:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.chart-grid line {
+  stroke: var(--grid);
+  stroke-width: 1;
+}
+
+.chart-axis {
+  stroke: var(--axis);
+  stroke-width: 1;
+}
+
+.chart-tick {
+  fill: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-unit {
+  fill: var(--ink-2);
+  font-size: 12px;
+}
+
+.chart-line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.chart-band {
+  opacity: 0.14;
+}
+
+.chart-dot {
+  stroke: var(--surface);
+  stroke-width: 2;
+}
+
+.chart-crosshair {
+  stroke: var(--ink-2);
+  stroke-width: 1;
+}
+
+.chart-marker {
+  stroke: var(--axis);
+  stroke-width: 1;
+}
+
+.chart-reference {
+  stroke: var(--ink-2);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+
+.chart-label,
+.chart-end-label {
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.chart-label {
+  fill: var(--ink-2);
+  font-size: 12px;
+}
+
+.chart-end-label {
+  fill: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.chart-focus-ring {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.chart-tooltip {
+  position: absolute;
+  z-index: 1;
+  min-width: 9rem;
+  padding: 0.5rem 0.65rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.chart-tooltip-title {
+  color: var(--ink-2);
+  margin-bottom: 0.2rem;
+}
+
+.chart-tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.chart-tooltip-key {
+  width: 12px;
+  height: 2px;
+  flex: none;
+}
+
+.chart-tooltip-label {
+  color: var(--ink-2);
+}
+
+.chart-foot {
+  margin: 0.75rem 0 0;
+  color: var(--ink-2);
+  font-size: 0.85rem;
+}
+
+.chart details {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.chart summary {
+  cursor: pointer;
+  color: var(--link);
+}
+
+.chart-table-scroll {
+  max-height: 20rem;
+  overflow: auto;
+  margin-top: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  padding: 0.3rem 0.75rem;
+  text-align: right;
+  border-bottom: 1px solid var(--grid);
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-weight: 600;
+}
+
+tbody th {
+  font-weight: 400;
+}
+
+.formula {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+
+.changes li,
+.sources li {
+  margin-bottom: 0.6rem;
+}
+
+.sources {
+  font-size: 0.92rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 16px 3rem;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  margin: 0 0 0.5rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
