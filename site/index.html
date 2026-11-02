@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Four Southern Hemisphere climate charts from a 2017 Harvey Mudd CS35 project, rebuilt in 2026 with current data: the Antarctic ozone hole, CFC-12, and temperature and carbon dioxide in Chile."
+    />
+    <title>Four Southern Hemisphere climate charts</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="main.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div>
+        <p class="kicker">Harvey Mudd College, CS35, spring 2017. Rebuilt in 2026.</p>
+        <h1>Four climate charts from the Southern Hemisphere</h1>
+        <p class="lede">
+          For our CS35 final project in spring 2017, Pratyush Kapur, Hannah Slocumb, and I (Siena Guerrero) built a
+          small site of climate charts called “Climate Change is Real! Thx”. This is my 2026 rebuild: the same four
+          charts, with current data, units on every axis, and fixes to the science we got wrong.
+        </p>
+        <p>
+          Every chart looks south: the ozone hole over Antarctica, CFC-12 in Southern Hemisphere air, and winter
+          temperature and carbon dioxide emissions in Chile. The <a href="2017/">2017 site</a> is archived as it was,
+          minus its contact page.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <ul class="jump" aria-label="On this page">
+        <li><a href="#ozone">Ozone hole</a></li>
+        <li><a href="#cfc12">CFC-12 and the hole</a></li>
+        <li><a href="#temperature">Chile temperature</a></li>
+        <li><a href="#co2">Chile CO₂</a></li>
+        <li><a href="#changes">What changed since 2017</a></li>
+        <li><a href="#sources">Sources</a></li>
+      </ul>
+
+      <section id="ozone" aria-labelledby="ozone-heading">
+        <h2 id="ozone-heading">The ozone hole</h2>
+        <p>
+          The ozone hole is the area over Antarctica where the total ozone overhead falls below 220 Dobson units. NASA
+          draws the line there because readings that low were not observed before 1979. A British Antarctic Survey team
+          reported the losses in <cite>Nature</cite> in 1985, from ground measurements at Halley Bay.
+        </p>
+        <p>
+          The chlorine that does the damage comes mostly from chlorofluorocarbons (CFCs). CFCs are so unreactive in the
+          lower atmosphere that they last long enough to drift up into the stratosphere, where ultraviolet light breaks
+          them apart and frees their chlorine. Over Antarctica, the winter cold forms polar stratospheric clouds.
+          Reactions on the cloud particles turn stable chlorine compounds into forms that sunlight splits apart when it
+          returns in September. Each freed chlorine atom then destroys ozone in a catalytic cycle, breaking down
+          thousands of ozone molecules before it is tied up again. The net reaction turns ozone into ordinary oxygen,
+          <span class="formula">2 O₃ → 3 O₂</span>. Bromine from halons adds to the loss.
+        </p>
+        <p>
+          The Montreal Protocol, signed in 1987, phased out CFC production worldwide by 2010. The hole stopped growing
+          around 2000 but has not shrunk in a straight line since. The 2022 WMO/UNEP ozone assessment expects ozone over
+          Antarctica to return to its 1980 level around 2066.
+        </p>
+
+        <figure class="chart">
+          <figcaption>
+            <h3>Antarctic ozone hole area, 1979 to 2025</h3>
+            <p class="chart-sub">
+              Average area from September 7 to October 13 each year, in million square kilometers. There are no
+              satellite data for 1995.
+            </p>
+          </figcaption>
+          <div class="chart-plot" id="ozone-chart"></div>
+          <p class="chart-foot">
+            Source: NASA Ozone Watch. <a href="data/ozone_hole.csv">Download the CSV</a>. 2017 chart by Hannah Slocumb.
+          </p>
+          <details id="ozone-table"><summary>Show the numbers</summary></details>
+        </figure>
+      </section>
+
+      <section id="cfc12" aria-labelledby="cfc12-heading">
+        <h2 id="cfc12-heading">CFC-12 and the size of the hole</h2>
+        <p>
+          CFC-12 is the most abundant CFC in the atmosphere and lasts about a century there. In Southern Hemisphere air
+          it climbed from 275 parts per trillion (ppt) in 1979 to a peak of 541 ppt in 2002, held almost flat through
+          2004, and has fallen slowly since, to 477 ppt in 2025. That is 12% below the peak.
+        </p>
+        <p>The 2017 site called the link between CFC-12 and the size of the hole proportional. It isn't, for three reasons.</p>
+        <ul>
+          <li>
+            <strong>The hole has an edge.</strong> It forms inside the polar vortex, a ring of strong winds that seals
+            in cold air over Antarctica each winter. Through the 1980s the hole grew fast as CFC-12 rose. Its growth
+            slowed in the 1990s because the hole cannot spread past the vortex, and in cold years chlorine was already
+            destroying nearly all the ozone it could reach inside it.
+          </li>
+          <li>
+            <strong>The stratosphere lags the surface.</strong> The chart below pairs each year's hole with CFC-12
+            measured near the ground that year. Air takes years to rise into the stratosphere and reach the pole, so the
+            chlorine over Antarctica reflects surface air from several years earlier. Other chlorine and bromine gases
+            matter too, so CFC-12 stands in for the total rather than measuring it.
+          </li>
+          <li>
+            <strong>Weather moves single years.</strong> Cold winters form more polar stratospheric clouds, and warm,
+            disturbed ones form fewer. In late September 2002 the Southern Hemisphere had its first recorded major
+            sudden stratospheric warming, which split the vortex in two. That year's hole averaged 12.0 million km², the
+            smallest since 1988, in the same year CFC-12 peaked. The next year it was back to 25.8. Similar conditions
+            in 1988 and 2019 also gave small holes, and 2019's 9.3 million km² was the smallest since 1983. One year's
+            hole says more about that winter's weather than about chlorine, so telling the two apart takes decades of
+            data and models that account for temperature.
+          </li>
+        </ul>
+
+        <figure class="chart">
+          <figcaption>
+            <h3>Ozone hole area against CFC-12, 1979 to 2025</h3>
+            <p class="chart-sub">
+              Each dot is one year. Across: CFC-12 in Southern Hemisphere air, annual mean in ppt. Up: ozone hole area
+              in million km².
+            </p>
+          </figcaption>
+          <ul class="legend">
+            <li><span class="key-dot key-1"></span>CFC-12 rising, 1979 to 2002</li>
+            <li><span class="key-dot key-2"></span>CFC-12 falling, 2003 to 2025</li>
+          </ul>
+          <div class="chart-plot" id="cfc12-chart"></div>
+          <p class="chart-foot">
+            Sources: NOAA Global Monitoring Laboratory and NASA Ozone Watch.
+            <a href="data/cfc12_southern_hemisphere.csv">Download the CFC-12 CSV</a>. 2017 chart by Hannah Slocumb.
+          </p>
+          <details id="cfc12-table"><summary>Show the numbers</summary></details>
+        </figure>
+      </section>
+
+      <section id="temperature" aria-labelledby="temperature-heading">
+        <h2 id="temperature-heading">Winter in Chile</h2>
+        <p>
+          Pratyush's 2017 chart plotted Chile's June and July temperatures back to 1855, each month as its own dot, in
+          absolute degrees. June and July are winter months in Chile. This version averages the two months for each
+          year and shows how far that average sits above or below its 1951 to 1980 level (about 4.9 °C), with Berkeley
+          Earth's 95% uncertainty band. Climate records are usually compared as differences from a baseline period,
+          because those differences vary smoothly from place to place even when absolute temperatures do not.
+        </p>
+        <p>
+          Chile is a hard place to average. It spans 38 degrees of latitude, from the Atacama Desert to Tierra del
+          Fuego, and the cold Humboldt Current runs along its coast. The national series still warms. June to July
+          temperatures averaged 0.48 °C above the 1951 to 1980 level in 1991 to 2020, and 0.82 °C above it in 2011 to
+          2020. The straight-line trend from 1960 to 2020 is about 0.14 °C per decade. Before 1900 few stations
+          reported, so the uncertainty band is wide. Berkeley Earth last generated its Chile file in January 2021, so
+          the series ends in 2020.
+        </p>
+
+        <figure class="chart">
+          <figcaption>
+            <h3>Chile June to July land temperature, 1860 to 2020</h3>
+            <p class="chart-sub">
+              Difference from the 1951 to 1980 average for the same months, in °C. Shaded: 95% uncertainty.
+            </p>
+          </figcaption>
+          <div class="chart-plot" id="temperature-chart"></div>
+          <p class="chart-foot">
+            Source: Berkeley Earth. <a href="data/chile_june_july_temperature.csv">Download the CSV</a>. 2017 chart by
+            Pratyush Kapur.
+          </p>
+          <details id="temperature-table"><summary>Show the numbers</summary></details>
+        </figure>
+      </section>
+
+      <section id="co2" aria-labelledby="co2-heading">
+        <h2 id="co2-heading">Carbon dioxide from Chile</h2>
+        <p>
+          My 2017 chart used a World Bank series of carbon dioxide emissions per person, built on CDIAC data. The World
+          Bank has since retired it. Its replacement, from the European Commission's EDGAR database, starts in 1970 and
+          uses different methods: for 2013 the old series gives 4.73 metric tons per person and the new one 4.83.
+          Joining them would invent a jump, so this chart uses only the new series and adds the world average for scale.
+        </p>
+        <p>
+          Chile's emissions per person fell from 3.15 metric tons in 1973 to 2.42 in 1977, across a 1975 recession in
+          which its economy shrank 12.3%. They fell again in 1982, when it shrank 11.5%, and stayed below 2 tons until
+          1988. From then on they mostly rose, reached the world average in 2013, ran slightly above it from 2016 to
+          2020, and peaked at 4.96 metric tons in 2019. The series then drops 15% in 2023, in Chile's total emissions as
+          well as per person. I haven't traced the cause, and the newest years in an inventory like this are the
+          likeliest to be revised.
+        </p>
+
+        <figure class="chart">
+          <figcaption>
+            <h3>Carbon dioxide emissions per person, Chile and world, 1970 to 2024</h3>
+            <p class="chart-sub">Metric tons of CO₂ per person per year, excluding land use and forestry.</p>
+          </figcaption>
+          <ul class="legend">
+            <li><span class="key-line key-1"></span>Chile</li>
+            <li><span class="key-line key-2"></span>World</li>
+          </ul>
+          <div class="chart-plot" id="co2-chart"></div>
+          <p class="chart-foot">
+            Source: World Bank, series EN.GHG.CO2.PC.CE.AR5, from EDGAR.
+            <a href="data/co2_per_person.csv">Download the CSV</a>. 2017 chart by Siena Guerrero.
+          </p>
+          <details id="co2-table"><summary>Show the numbers</summary></details>
+        </figure>
+      </section>
+
+      <section id="changes" aria-labelledby="changes-heading">
+        <h2 id="changes-heading">What changed since 2017</h2>
+        <ul class="changes">
+          <li>
+            <strong>Current data.</strong> Three of the 2017 sources are gone. CDIAC, which hosted the CFC-12 record,
+            has closed. theozonehole.com no longer publishes data. The World Bank retired its CO₂ series. Each chart now
+            uses one current source from start to end, retrieved on November 2, 2026.
+          </li>
+          <li>
+            <strong>Units on every axis.</strong> The 2017 CFC axis read “CFC Mixing Ratio” with no unit. It is parts
+            per trillion.
+          </li>
+          <li>
+            <strong>Years as numbers.</strong> We fed whole-number years to a Bokeh datetime axis, which reads numbers
+            as milliseconds since 1970, then covered it up with a plain number formatter. These charts use a numeric
+            year axis.
+          </li>
+          <li>
+            <strong>Data in files.</strong> The 2017 plots had their numbers typed into the Python code, and my CO₂ script
+            listed years through 2014 for data that ended in 2013. Now a script downloads each source and writes the
+            CSV files the charts read, and a check runs before every deploy.
+          </li>
+          <li>
+            <strong>A steadier ozone measure.</strong> The 2017 numbers were each year's largest single-day hole area.
+            These are NASA's September 7 to October 13 averages, which one unusual day can't swing.
+          </li>
+          <li>
+            <strong>Measured CFC-12.</strong> The 2017 values came from a compiled history whose 2014 value was
+            extrapolated from 2013. These are NOAA network measurements, on a slightly different calibration scale. Both
+            records are flat within 1 ppt from 2001 to 2004. The old one tops out in 2003, the new one in 2002.
+          </li>
+          <li>
+            <strong>Temperature as a difference from normal.</strong> June and July are averaged for each year and
+            shown against 1951 to 1980, with uncertainty. The 2017 text said the record ran “since the 1700s”, but in
+            that data Chile's record started in 1855.
+          </li>
+          <li>
+            <strong>Corrected science.</strong> CFCs are chlorofluorocarbons, not “chlorinated fluorocarbons”. Chlorine
+            turns ozone into ordinary oxygen (O₂), not a mix of O₂ and single oxygen atoms. And CFC-12 and the size of
+            the hole are linked, but not in proportion.
+          </li>
+          <li>
+            <strong>Works on more screens.</strong> The page fits phones and follows dark mode. Every chart has a data
+            table and can be read with the keyboard: focus a chart, then use the arrow keys.
+          </li>
+        </ul>
+      </section>
+
+      <section id="credits" aria-labelledby="credits-heading">
+        <h2 id="credits-heading">Credits</h2>
+        <p>
+          2017: Pratyush Kapur made the Chile temperature chart. Hannah Slocumb made both ozone charts. Siena Guerrero
+          made the CO₂ chart and the references page and put the site together. It used the free “An Ocean of Sky”
+          template by Bryant Smith.
+        </p>
+        <p>2026 rebuild: Siena Guerrero.</p>
+      </section>
+
+      <section id="sources" aria-labelledby="sources-heading">
+        <h2 id="sources-heading">Sources</h2>
+        <ul class="sources">
+          <li>
+            NASA Ozone Watch, <a href="https://ozonewatch.gsfc.nasa.gov/meteorology/annual_data.html">Annual Records</a>.
+            Ozone hole area, average of September 7 to October 13.
+          </li>
+          <li>
+            Dutton, G. S., et al. (2026). Combined Atmospheric Chlorofluorocarbon-12 Dry Air Mole Fractions from the
+            NOAA GML Halocarbons Sampling Network, 1977-2026.
+            <a href="https://doi.org/10.15138/PJ63-H440">doi:10.15138/PJ63-H440</a>. Annual means of the Southern
+            Hemisphere monthly series, for calendar years with all 12 months.
+          </li>
+          <li>
+            Berkeley Earth, Chile regional land temperature
+            (<a href="https://berkeley-earth-temperature.s3.us-west-1.amazonaws.com/Regional/TAVG/chile-TAVG-Trend.txt">chile-TAVG-Trend.txt</a>),
+            analysis run January 2021. Licensed CC BY-NC 4.0.
+          </li>
+          <li>
+            World Bank, World Development Indicators,
+            <a href="https://data.worldbank.org/indicator/EN.GHG.CO2.PC.CE.AR5">EN.GHG.CO2.PC.CE.AR5</a>, from the EDGAR
+            Community GHG Database (JRC, European Commission, 2024). GDP growth from
+            <a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG?locations=CL">NY.GDP.MKTP.KD.ZG</a>.
+            Licensed CC BY 4.0.
+          </li>
+          <li>
+            Farman, J. C., Gardiner, B. G., and Shanklin, J. D. (1985). Large losses of total ozone in Antarctica reveal
+            seasonal ClOx/NOx interaction. <cite>Nature</cite> 315, 207-210.
+            <a href="https://doi.org/10.1038/315207a0">doi:10.1038/315207a0</a>.
+          </li>
+          <li>
+            WMO/UNEP,
+            <a href="https://csl.noaa.gov/assessments/ozone/2022/">Scientific Assessment of Ozone Depletion: 2022</a>.
+          </li>
+          <li>
+            Yoo, J.-H., and Chun, H.-Y. (2025). Role of in situ-excited planetary waves in polar vortex splitting during
+            the 2002 Southern Hemisphere sudden stratospheric warming event.
+            <a href="https://acp.copernicus.org/articles/25/13651/2025/"><cite>Atmospheric Chemistry and Physics</cite> 25, 13651-13664</a>.
+          </li>
+          <li>
+            NOAA Climate.gov,
+            <a href="https://www.climate.gov/news-features/understanding-climate/five-questions-about-2019s-record-small-ozone-hole">Five questions about 2019's record-small ozone hole</a>.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p>
+          Rebuilt by Siena Guerrero in 2026 from a 2017 CS35 project at Harvey Mudd College. Data retrieved November 2,
+          2026.
+        </p>
+        <p>
+          <a href="2017/">The 2017 site</a> ·
+          <a href="https://github.com/sienaguerrero/cs35-climate-site">Source on GitHub</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
