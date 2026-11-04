@@ -15,6 +15,7 @@
   --header-to: #0d366b;
   --header-ink: #ffffff;
   --header-ink-2: #cde2fb;
+  --cloud-ink: rgba(0, 10, 20, 0.4);
   --shadow: 0 6px 20px rgba(11, 11, 11, 0.1);
 }
 
@@ -34,6 +35,7 @@
     --series-2: #d95926;
     --header-from: #013642;
     --header-to: #0a2a52;
+    --cloud-ink: rgba(0, 10, 20, 0.55);
     --shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
   }
 }
@@ -85,7 +87,8 @@ h3 {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: url("clouds.svg") 0 0 / 168px 168px repeat;
+  background: var(--cloud-ink);
+  mask: url("clouds.svg") 0 0 / 168px 168px repeat;
 }
 
 .site-header > div,
