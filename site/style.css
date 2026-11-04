@@ -1,41 +1,43 @@
 :root {
   color-scheme: light;
-  --page: #f9f9f7;
-  --surface: #fcfcfb;
-  --ink: #0b0b0b;
-  --ink-2: #52514e;
-  --muted: #898781;
-  --grid: #e1e0d9;
-  --axis: #c3c2b7;
-  --border: rgba(11, 11, 11, 0.1);
-  --link: #1c5cab;
-  --series-1: #2a78d6;
-  --series-2: #eb6834;
-  --header-from: #014d5d;
-  --header-to: #0d366b;
-  --header-ink: #ffffff;
-  --header-ink-2: #cde2fb;
-  --cloud-ink: rgba(0, 10, 20, 0.4);
-  --shadow: 0 6px 20px rgba(11, 11, 11, 0.1);
+  --page: #f6f1e6;
+  --surface: #fcfaf5;
+  --ink: #061c37;
+  --ink-2: #4f4a40;
+  --muted: #6e6656;
+  --grid: #e8e0cf;
+  --axis: #c9bc9f;
+  --border: rgba(6, 28, 55, 0.12);
+  --link: #105495;
+  --series-1: #105495;
+  --series-2: #a8642e;
+  --header-from: #abc7f0;
+  --header-to: #dbe8f8;
+  --header-ink: #061c37;
+  --header-ink-2: #24475a;
+  --cloud-ink: rgba(255, 255, 255, 0.75);
+  --shadow: 0 6px 20px rgba(6, 28, 55, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --page: #0d0d0d;
-    --surface: #1a1a19;
-    --ink: #f0efec;
-    --ink-2: #c3c2b7;
-    --muted: #898781;
-    --grid: #2c2c2a;
-    --axis: #383835;
+    --page: #14120e;
+    --surface: #1d1a15;
+    --ink: #f1ebdf;
+    --ink-2: #cbc2b0;
+    --muted: #a39885;
+    --grid: #2c2820;
+    --axis: #474033;
     --border: rgba(255, 255, 255, 0.1);
-    --link: #86b6ef;
-    --series-1: #3987e5;
-    --series-2: #d95926;
-    --header-from: #013642;
-    --header-to: #0a2a52;
-    --cloud-ink: rgba(0, 10, 20, 0.55);
+    --link: #8fb8e8;
+    --series-1: #6aa6e6;
+    --series-2: #d98a52;
+    --header-from: #0a1a30;
+    --header-to: #16304f;
+    --header-ink: #f1ebdf;
+    --header-ink-2: #a9c8fa;
+    --cloud-ink: rgba(0, 4, 10, 0.5);
     --shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
   }
 }
@@ -59,8 +61,9 @@ a {
 h1,
 h2,
 h3 {
+  font-family: Georgia, "Times New Roman", serif;
   line-height: 1.25;
-  font-weight: 650;
+  font-weight: 400;
 }
 
 h2 {
@@ -70,6 +73,7 @@ h2 {
 
 h3 {
   font-size: 1.05rem;
+  font-weight: 700;
   margin: 0;
 }
 
@@ -77,7 +81,7 @@ h3 {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--header-from), var(--header-to));
+  background: linear-gradient(180deg, var(--header-from), var(--header-to));
   color: var(--header-ink);
   padding: 3.5rem 16px 3rem;
 }
