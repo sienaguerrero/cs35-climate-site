@@ -83,25 +83,9 @@ h3 {
 .site-header::before {
   content: "";
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: -1200px;
+  inset: 0;
   z-index: -1;
-  background: url("clouds.svg") repeat-x 0 50% / 1200px 560px;
-  animation: cloud-drift 240s linear infinite;
-}
-
-@keyframes cloud-drift {
-  to {
-    transform: translateX(-1200px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .site-header::before {
-    animation: none;
-  }
+  background: url("clouds.svg") 0 0 / 168px 168px repeat;
 }
 
 .site-header > div,
